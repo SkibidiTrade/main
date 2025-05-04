@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Send Webhook to Local Server</title>
+</head>
+<body>
+  <h2>Send Test Webhook</h2>
+  <button onclick="sendWebhook()">Send Webhook</button>
+
+  <script>
+    function sendWebhook() {
+      fetch("http://127.0.0.1:8000", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          signal: "buy",
+          price: 1234.56
+        })
+      })
+      .then(response => response.text())
+      .then(data => alert("Response: " + data))
+      .catch(error => alert("Error: " + error));
+    }
+  </script>
+</body>
+</html>
